@@ -1,0 +1,10 @@
+C:\Users\vetrokot\source\repos\GitSame\GitSame\bin\Debug\GitSame.exe.config
+C:\Users\vetrokot\source\repos\GitSame\GitSame\bin\Debug\GitSame.exe
+C:\Users\vetrokot\source\repos\GitSame\GitSame\bin\Debug\GitSame.pdb
+C:\Users\vetrokot\source\repos\GitSame\GitSame\obj\Debug\GitSame.csprojAssemblyReference.cache
+C:\Users\vetrokot\source\repos\GitSame\GitSame\obj\Debug\GitSame.Form1.resources
+C:\Users\vetrokot\source\repos\GitSame\GitSame\obj\Debug\GitSame.Properties.Resources.resources
+C:\Users\vetrokot\source\repos\GitSame\GitSame\obj\Debug\GitSame.csproj.GenerateResource.cache
+C:\Users\vetrokot\source\repos\GitSame\GitSame\obj\Debug\GitSame.csproj.CoreCompileInputs.cache
+C:\Users\vetrokot\source\repos\GitSame\GitSame\obj\Debug\GitSame.exe
+C:\Users\vetrokot\source\repos\GitSame\GitSame\obj\Debug\GitSame.pdb
