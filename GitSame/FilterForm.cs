@@ -17,7 +17,6 @@ namespace GitSame
     {
         public DbManager db;
 
-        
         public FilterForm(DbManager man)
         {
             InitializeComponent();
@@ -31,7 +30,7 @@ namespace GitSame
         {
             string check = inputFiles.Text;
             check = check.Replace(" ", "");
-            //TODO пробелы TODO
+           
             if (check.Length > 0)
             {
                 string file = inputFiles.Text;
@@ -40,8 +39,7 @@ namespace GitSame
                 Setting.getInstance().filters.Add(file);
                 inputFiles.Text = "";
                 listFiles.Invalidate();
-                
-                
+               
             }
         }
 
@@ -51,15 +49,10 @@ namespace GitSame
             listFiles.Items.Remove(file);
             listFiles.Invalidate();
             Setting.getInstance().filters.Remove(file.ToString());
-            
-            
         }
 
         private void continueButton_Click(object sender, EventArgs e)
         {
-            
             this.Hide();
-
-        }
     }
 }

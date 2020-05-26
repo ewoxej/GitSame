@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using System.Windows.Forms;
-using GitApi; 
+
 
 namespace GitSame
 {
@@ -24,63 +24,20 @@ namespace GitSame
             InitializeComponent();
             db = man;
 
-
-            //var files = db.getFiles(new FileEntity { });
-            //printFileEntityList(files);
             dataGridViewFinal.Rows.Clear();
             bool group = !Setting.getInstance().findAutoplagiat;
             var matches1 = db.getMatchesInFiles(group);
-            Console.WriteLine("Matches 1, do not group by owner");
+            
             foreach (var i in matches1)
             {
-                
                         printFileEntityList(i);
                         dataGridViewFinal.Rows.Add();
-                   
-
-                    //dataGridViewFinal.Rows[rowNumber].Cells["description"].Value = " "; 
-             
-                //var reps = db.getRepos(new RepoEntity { });
-                // //printRepoEntityList(repos);
-                // foreach (RepoEntity item in reps)
-                // { db.cleanRepo(item); }
-
-
-
             }
         }
 
-        
-        public void printRepoEntity(RepoEntity ent)
-        {
-
-            ArrayList row = new ArrayList();
-
-            row.Add(ent.name);
-            row.Add(ent.owner);
-            row.Add(ent.branch);
-            
-            dataGridViewFinal.Rows.Add(row.ToArray());
-            dataGridViewFinal.EndEdit();
-        }
-
-        public void printRepoEntityList(List<RepoEntity> ent)
-        {
-            Console.WriteLine("RepoEntityList");
-            foreach (var i in ent)
-                printRepoEntity(i);
-        }
 
         public void printFileEntity(FileEntity ent)
         {
-            Console.WriteLine("-FileEntity");
-            Console.WriteLine("--owner: {0}", ent.owner);
-            Console.WriteLine("--repo_name: {0}", ent.repo_name);
-            Console.WriteLine("--path: {0}", ent.path);
-            Console.WriteLine("--hash: {0}", ent.hash);
-            Console.WriteLine("--andSoOnFiles: {0}", ent.andSoOnFiles);
-
-            
                 ArrayList row = new ArrayList();
 
                 row.Add(ent.repo_name);
@@ -89,8 +46,6 @@ namespace GitSame
 
                 dataGridViewFinal.Rows.Add(row.ToArray());
                 dataGridViewFinal.EndEdit();
-           
-            
         }
 
         public void printFileEntityList(List<FileEntity> ent)

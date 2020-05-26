@@ -14,18 +14,14 @@ namespace GitSame
 {
     public partial class Form1 : Form
     {
-
-
         public string appDataPath;
         public string dbPath;
         public DbManager man;
 
-
-
         public Form1()
         {
             InitializeComponent();
-            //dataGridView.DataSource = new BindingList<RepositoryRow>(repositoryRows.ToList());
+            
             appDataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "GitSame");
             if (!Directory.Exists(appDataPath))
                 Directory.CreateDirectory(appDataPath);
@@ -57,14 +53,6 @@ namespace GitSame
 
         public void printRepoEntity(RepoEntity ent)
         {
-            Console.WriteLine("-RepoEntity");
-            Console.WriteLine("--owner: {0}", ent.owner);
-            Console.WriteLine("--name: {0}", ent.name);
-            Console.WriteLine("--description: {0}", ent.name);
-            Console.WriteLine("--branch: {0}", ent.branch);
-            Console.WriteLine("--last_commit_hash: {0}", ent.last_commit_hash);
-            Console.WriteLine("--andSoOnFiles: {0}", ent.andSoOnFiles);
-
             ArrayList row = new ArrayList();
 
             row.Add(ent.name);
@@ -89,13 +77,12 @@ namespace GitSame
         public void AddNewRepos()
         {
             string repo1 = inputRepos.Text;
-            Manager.setToken("77a080207f6803fcadba945cb4b141ff4a616af8");
-            //Console.WriteLine(string.Format("Repository address: {0}", repo1));
-            var api1 = Manager.toApiUrl(repo1);//convert github url to api url
-            //Console.WriteLine(string.Format("Repository address for API: {0}", api1));
+            //Manager.setToken("Paste here your GitHub API secret token");
+           
+            var api1 = Manager.toApiUrl(repo1);
             var rep1 = Manager.doRequest<Repo>(api1);
             var branches = Manager.getBranchesList(rep1);
-            //Console.WriteLine(string.Format("Found {0} branches", branches.Count));
+            
             foreach (var item in branches)
             {
                 Console.WriteLine(string.Format("Branch: {0}", item.name));
@@ -104,7 +91,6 @@ namespace GitSame
                     var commit = Manager.doRequest<Commit>(item.commit.url);
                     Console.WriteLine(string.Format("Commit: {0}", commit.sha));
                     var tree = Manager.getTree(commit, true);
-                    Console.WriteLine(string.Format("Found {0} elements in tree", tree.tree.Count));
                     man.addRepoInfo(new RepoEntity { owner = rep1.owner.login, name = rep1.name, branch = item.name, last_commit_hash = item.commit.url });
 
                     ArrayList row = new ArrayList();
@@ -118,60 +104,7 @@ namespace GitSame
                     dataGridView.EndEdit();
                 }
             }
-
         }
-
-        public void AddRepos()
-        {
-
-
-
-
-        }
-
-
-        public void dbTest()
-        {
-
-            var files = man.getFiles(new FileEntity { owner = "vetrokot" });//get files where ownere = vetrokot
-            //printFileEntityList(files);
-
-            man.changeFileHash(new FileEntity { owner = "ewoxej", repo_name = "eworepo2", hash = "f32ff" });
-            var matches1 = man.getMatchesInFiles(false);
-            Console.WriteLine("Matches 1, do not group by owner");
-            foreach (var i in matches1)
-            {
-                //printFileEntityList(i);
-            }
-            var matches2 = man.getMatchesInFiles(true);
-            Console.WriteLine("Matches 2, group by owner");
-            foreach (var i in matches2)
-            {
-                //printFileEntityList(i);
-            }
-
-
-            man.changeRepoDescription(new RepoEntity { owner = "ewoxej", name = "eworepo1", description = "testrepo" });
-            man.changeRepoBranch(new RepoEntity { owner = "ewoxej", name = "eworepo1", branch = "develop" });
-            man.changeRepoLastCommitHash(new RepoEntity { owner = "ewoxej", name = "eworepo1", last_commit_hash = "dwd2d3" });
-            var repos = man.getRepos(new RepoEntity { });
-            printRepoEntityList(repos);
-            man.deleteFile(new FileEntity { owner = "ewoxej", repo_name = "eworepo1", path = "root/smth" });
-            man.deleteFile(new FileEntity { owner = "ewoxej", repo_name = "eworepo1", path = "non-existing file" });
-            man.deleteRepo(new RepoEntity { owner = "ewoxej", name = "eworepo1" });
-            man.deleteOwner("vetrokot");
-            var file = man.getFiles(new FileEntity());
-            //printFileEntityList(file);
-
-
-            //man.close();
-            //File.Delete(dbPath);
-
-
-        }
-
-
-
         public void DeleteRow(DataGridViewCellEventArgs e)
         {
             string name = dataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
@@ -215,7 +148,6 @@ namespace GitSame
             {
                 UpdateRow(e);
             }
-
         }
         private bool IsANonHeaderLinkCell(DataGridViewCellEventArgs cellEvent)
         {
@@ -247,9 +179,6 @@ namespace GitSame
             { return true; }
             else { return (false); }
         }
-
-
-
 
         private void dataGridView_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
@@ -294,10 +223,8 @@ namespace GitSame
                 {
                 man.checkRepo(checkrepo, false);
                     continue;
-                }
-                
+                } 
                 man.checkRepo(checkrepo, Convert.ToBoolean(row.Cells[5].Value));
-                
             }
 
             repos = man.getRepos(new RepoEntity { is_checked = true });
@@ -322,13 +249,12 @@ namespace GitSame
                 if (i.last_commit_hash == "")
                 { continue; }
                 string repo1 = "https://github.com/" + i.owner + '/' + i.name;
-                Manager.setToken("77a080207f6803fcadba945cb4b141ff4a616af8");
-                //Console.WriteLine(string.Format("Repository address: {0}", repo1));
-                var api1 = Manager.toApiUrl(repo1);//convert github url to api url
-                                                   //Console.WriteLine(string.Format("Repository address for API: {0}", api1));
+                //Manager.setToken("Paste here your GitHub API secret token");
+
+                var api1 = Manager.toApiUrl(repo1);                             
                 var rep1 = Manager.doRequest<Repo>(api1);
                 var branches = Manager.getBranchesList(rep1);
-                //Console.WriteLine(string.Format("Found {0} branches", branches.Count));
+                
                 foreach (var item in branches)
                 {
                     Console.WriteLine(string.Format("Branch: {0}", item.name));
@@ -344,7 +270,7 @@ namespace GitSame
                             {
                                 var element = Manager.getBlob(treeItem);
                                 var hash = sha256_hash(element.content);
-                                //add to db
+                                
                                 try
                                 {
                                 man.addFileInfo(new FileEntity { owner = rep1.owner.login, repo_name = rep1.name, path = treeItem.path, hash = hash });
