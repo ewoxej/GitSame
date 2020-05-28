@@ -21,7 +21,7 @@ namespace GitSame
         public Form1()
         {
             InitializeComponent();
-
+            Manager.setToken("insert your token here");
             appDataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "GitSame");
             if (!Directory.Exists(appDataPath))
                 Directory.CreateDirectory(appDataPath);
@@ -81,19 +81,11 @@ namespace GitSame
             try
             {
                 string repo1 = inputRepos.Text;
-                Manager.setToken("47c1dfe330ee38e55f66a24010c06812ba622302");
 
                 var api1 = Manager.toApiUrl(repo1);
-                try
-                {
+
                     var rep1 = Manager.doRequest<Repo>(api1);
-                }
-                catch { return;  }
-                try
-                {
                     var branches = Manager.getBranchesList(rep1);
-                }
-                catch { return; }
 
                 foreach (var item in branches)
                 {
@@ -103,9 +95,6 @@ namespace GitSame
                         var commit = Manager.doRequest<Commit>(item.commit.url);
                         Console.WriteLine(string.Format("Commit: {0}", commit.sha));
                         var tree = Manager.getTree(commit, true);
-                        try
-                        {
-
                             man.addRepoInfo(new RepoEntity { owner = rep1.owner.login, name = rep1.name, branch = item.name, last_commit_hash = item.commit.url });
 
                             ArrayList row = new ArrayList();
@@ -118,18 +107,13 @@ namespace GitSame
                             dataGridView.Rows.Add(row.ToArray());
                             dataGridView.EndEdit();
                             reposisexist.Visible = false;
-                        }
-                        catch
-                        {
-                            reposisexist.Visible = true;
-                        }
                     }
                 }
             }
             catch 
             {
-                Console.WriteLine("padaet");
-                    
+                reposisexist.Visible = true;
+
             }
         }
         public void DeleteRow(DataGridViewCellEventArgs e)
@@ -146,9 +130,9 @@ namespace GitSame
             string owner = dataGridView.Rows[e.RowIndex].Cells[1].Value.ToString();
 
             //man.deleteFile(new FileEntity { owner = owner, repo_name = name });
-
-            List<RepoEntity> repos = man.getRepos(new RepoEntity { owner = owner, name = name });
-            man.cleanRepo(repos[0]);
+            RepoEntity repo = new RepoEntity { owner = owner, name = name, last_commit_hash = "" };
+            man.changeRepoLastCommitHash(repo);
+            man.cleanRepo(repo);
             
             
             dataGridView.Rows[e.RowIndex].Cells["updateRepos"].Value = "обновлено";
@@ -277,8 +261,9 @@ namespace GitSame
             
             foreach (RepoEntity i in repos)
             {
-                if (i.last_commit_hash == "")
-                { continue; }
+                if (!String.IsNullOrEmpty(i.last_commit_hash))
+                    continue;
+
                 getTree(i);
                 foreach (GitApi.TreeNode item in tree.tree)
                 {
@@ -316,7 +301,7 @@ namespace GitSame
         public void getTree(RepoEntity i)
         {
             repo1 = "https://github.com/" + i.owner + '/' + i.name;
-            Manager.setToken("47c1dfe330ee38e55f66a24010c06812ba622302");
+            //Manager.setToken("47c1dfe330ee38e55f66a24010c06812ba622302");
 
             api1 = Manager.toApiUrl(repo1);
             rep1 = Manager.doRequest<Repo>(api1);

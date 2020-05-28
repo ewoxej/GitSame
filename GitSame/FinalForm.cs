@@ -27,15 +27,15 @@ namespace GitSame
             dataGridViewFinal.Rows.Clear();
             bool group = !Setting.getInstance().findAutoplagiat;
             var matches1 = db.getMatchesInFiles(group);
-            
+
             foreach (var i in matches1)
             {
                         printFileEntityList(i);
                         dataGridViewFinal.Rows.Add();
             }
 
-            foreach (RepoEntity rep in db.getRepos(new RepoEntity { }))
-            db.checkRepo(rep, false);
+            //foreach (RepoEntity rep in db.getRepos(new RepoEntity { }))
+            //db.checkRepo(rep, false);
                 
         }
 

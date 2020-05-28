@@ -177,7 +177,7 @@ namespace GitSame
         public void gitApiTest()
         {
             string repo1 = "https://github.com/ewoxej/ewoxej.github.io";
-            //Manager.setToken("Paste here your GitHub API secret token");
+            
             Console.WriteLine(string.Format("Repository address: {0}", repo1));
             var api1 = Manager.toApiUrl(repo1);//convert github url to api url
             Console.WriteLine(string.Format("Repository address for API: {0}", api1));
