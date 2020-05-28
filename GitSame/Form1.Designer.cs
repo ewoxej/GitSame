@@ -28,24 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.checkButton = new System.Windows.Forms.Button();
             this.addRepos = new System.Windows.Forms.Button();
             this.inputRepos = new System.Windows.Forms.TextBox();
             this.dataGridView = new System.Windows.Forms.DataGridView();
-            this.filterButton = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.address = new System.Windows.Forms.DataGridViewLinkColumn();
             this.author = new System.Windows.Forms.DataGridViewLinkColumn();
             this.description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.deleteRepos = new System.Windows.Forms.DataGridViewButtonColumn();
             this.updateRepos = new System.Windows.Forms.DataGridViewButtonColumn();
             this.selectRepos = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.filterButton = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.checkAll = new System.Windows.Forms.CheckBox();
             this.autoplagiatCheck = new System.Windows.Forms.CheckBox();
+            this.reposisexist = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -87,14 +88,14 @@
             this.dataGridView.BackgroundColor = System.Drawing.Color.Lavender;
             this.dataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.Honeydew;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Honeydew;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.address,
@@ -103,14 +104,14 @@
             this.deleteRepos,
             this.updateRepos,
             this.selectRepos});
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Franklin Gothic Book", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Franklin Gothic Book", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView.DefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView.GridColor = System.Drawing.Color.DarkGreen;
             this.dataGridView.Location = new System.Drawing.Point(12, 120);
             this.dataGridView.Name = "dataGridView";
@@ -120,32 +121,11 @@
             this.dataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellContentClick);
             this.dataGridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView_CellMouseClick);
             // 
-            // filterButton
-            // 
-            this.filterButton.Font = new System.Drawing.Font("Franklin Gothic Demi", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.filterButton.Location = new System.Drawing.Point(12, 358);
-            this.filterButton.Name = "filterButton";
-            this.filterButton.Size = new System.Drawing.Size(177, 34);
-            this.filterButton.TabIndex = 7;
-            this.filterButton.Text = "добавить фильтры для поиска";
-            this.filterButton.UseVisualStyleBackColor = true;
-            this.filterButton.Click += new System.EventHandler(this.filterButton_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Franklin Gothic Book", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(12, 58);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(164, 20);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "добавить репозиторий: ";
-            // 
             // address
             // 
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            this.address.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            this.address.DefaultCellStyle = dataGridViewCellStyle2;
             this.address.HeaderText = "репозиторий";
             this.address.Name = "address";
             this.address.ReadOnly = true;
@@ -161,8 +141,8 @@
             // 
             // description
             // 
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.description.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.description.DefaultCellStyle = dataGridViewCellStyle3;
             this.description.HeaderText = "описание";
             this.description.Name = "description";
             this.description.ReadOnly = true;
@@ -194,6 +174,27 @@
             this.selectRepos.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.selectRepos.Width = 78;
             // 
+            // filterButton
+            // 
+            this.filterButton.Font = new System.Drawing.Font("Franklin Gothic Demi", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.filterButton.Location = new System.Drawing.Point(12, 358);
+            this.filterButton.Name = "filterButton";
+            this.filterButton.Size = new System.Drawing.Size(177, 34);
+            this.filterButton.TabIndex = 7;
+            this.filterButton.Text = "добавить фильтры для поиска";
+            this.filterButton.UseVisualStyleBackColor = true;
+            this.filterButton.Click += new System.EventHandler(this.filterButton_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Franklin Gothic Book", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(12, 58);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(164, 20);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "добавить репозиторий: ";
+            // 
             // checkAll
             // 
             this.checkAll.AutoSize = true;
@@ -219,12 +220,25 @@
             this.autoplagiatCheck.UseVisualStyleBackColor = true;
             this.autoplagiatCheck.CheckedChanged += new System.EventHandler(this.autoplagiatCheck_CheckedChanged);
             // 
+            // reposisexist
+            // 
+            this.reposisexist.AutoSize = true;
+            this.reposisexist.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.reposisexist.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.reposisexist.Location = new System.Drawing.Point(256, 21);
+            this.reposisexist.Name = "reposisexist";
+            this.reposisexist.Size = new System.Drawing.Size(151, 15);
+            this.reposisexist.TabIndex = 11;
+            this.reposisexist.Text = "Репозиторий уже добавлен!";
+            this.reposisexist.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.ClientSize = new System.Drawing.Size(656, 424);
+            this.Controls.Add(this.reposisexist);
             this.Controls.Add(this.autoplagiatCheck);
             this.Controls.Add(this.checkAll);
             this.Controls.Add(this.label1);
@@ -256,6 +270,7 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn selectRepos;
         private System.Windows.Forms.CheckBox checkAll;
         private System.Windows.Forms.CheckBox autoplagiatCheck;
+        private System.Windows.Forms.Label reposisexist;
     }
 }
 

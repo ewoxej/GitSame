@@ -22,7 +22,7 @@ namespace GitSame
             InitializeComponent();
             db = man;
             foreach (string item in Setting.getInstance().filters)
-            listFiles.Items.Add(item);
+                listFiles.Items.Add(item);
         }
 
 
@@ -30,16 +30,16 @@ namespace GitSame
         {
             string check = inputFiles.Text;
             check = check.Replace(" ", "");
-           
+
             if (check.Length > 0)
             {
                 string file = inputFiles.Text;
                 listFiles.Items.Add(file);
-                
+
                 Setting.getInstance().filters.Add(file);
                 inputFiles.Text = "";
                 listFiles.Invalidate();
-               
+
             }
         }
 
@@ -54,5 +54,8 @@ namespace GitSame
         private void continueButton_Click(object sender, EventArgs e)
         {
             this.Hide();
+        }
+
+       
     }
 }

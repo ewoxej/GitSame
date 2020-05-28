@@ -32,11 +32,12 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridViewFinal = new System.Windows.Forms.DataGridView();
-            this.address = new System.Windows.Forms.DataGridViewLinkColumn();
-            this.author = new System.Windows.Forms.DataGridViewLinkColumn();
-            this.description = new System.Windows.Forms.DataGridViewLinkColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.address = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.author = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.branch = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.description = new System.Windows.Forms.DataGridViewLinkColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFinal)).BeginInit();
             this.SuspendLayout();
             // 
@@ -49,6 +50,7 @@
             this.dataGridViewFinal.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.address,
             this.author,
+            this.branch,
             this.description});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
@@ -61,37 +63,9 @@
             this.dataGridViewFinal.Location = new System.Drawing.Point(12, 87);
             this.dataGridViewFinal.Name = "dataGridViewFinal";
             this.dataGridViewFinal.ReadOnly = true;
-            this.dataGridViewFinal.Size = new System.Drawing.Size(524, 298);
+            this.dataGridViewFinal.Size = new System.Drawing.Size(623, 298);
             this.dataGridViewFinal.TabIndex = 2;
             this.dataGridViewFinal.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewFinal_CellContentClick);
-            // 
-            // address
-            // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.address.DefaultCellStyle = dataGridViewCellStyle1;
-            this.address.HeaderText = "репозиторий";
-            this.address.Name = "address";
-            this.address.ReadOnly = true;
-            this.address.Text = "";
-            this.address.Width = 150;
-            // 
-            // author
-            // 
-            this.author.HeaderText = "владелец";
-            this.author.Name = "author";
-            this.author.ReadOnly = true;
-            this.author.Width = 130;
-            // 
-            // description
-            // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.description.DefaultCellStyle = dataGridViewCellStyle2;
-            this.description.HeaderText = "файл";
-            this.description.Name = "description";
-            this.description.ReadOnly = true;
-            this.description.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.description.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.description.Width = 200;
             // 
             // label1
             // 
@@ -113,11 +87,45 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "Проверка завершена";
             // 
+            // address
+            // 
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.address.DefaultCellStyle = dataGridViewCellStyle1;
+            this.address.HeaderText = "репозиторий";
+            this.address.Name = "address";
+            this.address.ReadOnly = true;
+            this.address.Text = "";
+            this.address.Width = 150;
+            // 
+            // author
+            // 
+            this.author.HeaderText = "владелец";
+            this.author.Name = "author";
+            this.author.ReadOnly = true;
+            this.author.Width = 130;
+            // 
+            // branch
+            // 
+            this.branch.HeaderText = "ветка";
+            this.branch.Name = "branch";
+            this.branch.ReadOnly = true;
+            // 
+            // description
+            // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.description.DefaultCellStyle = dataGridViewCellStyle2;
+            this.description.HeaderText = "файл";
+            this.description.Name = "description";
+            this.description.ReadOnly = true;
+            this.description.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.description.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.description.Width = 200;
+            // 
             // FinalForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(560, 438);
+            this.ClientSize = new System.Drawing.Size(656, 438);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridViewFinal);
@@ -132,10 +140,11 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridViewFinal;
-        private System.Windows.Forms.DataGridViewLinkColumn address;
-        private System.Windows.Forms.DataGridViewLinkColumn author;
-        private System.Windows.Forms.DataGridViewLinkColumn description;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DataGridViewLinkColumn address;
+        private System.Windows.Forms.DataGridViewLinkColumn author;
+        private System.Windows.Forms.DataGridViewTextBoxColumn branch;
+        private System.Windows.Forms.DataGridViewLinkColumn description;
     }
 }

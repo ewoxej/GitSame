@@ -18,8 +18,8 @@ namespace GitSame
     {
         public DbManager db;
         public DataGridView rows;
-        public List<RepoEntity> repos;
-        public FinalForm(DbManager man)
+        
+        public FinalForm(DbManager man, List<RepoEntity> repos)
         {
             InitializeComponent();
             db = man;
@@ -33,15 +33,20 @@ namespace GitSame
                         printFileEntityList(i);
                         dataGridViewFinal.Rows.Add();
             }
+
+            foreach (RepoEntity rep in db.getRepos(new RepoEntity { }))
+            db.checkRepo(rep, false);
+                
         }
 
 
-        public void printFileEntity(FileEntity ent)
-        {
+        public void printFileEntity(FileEntity ent, RepoEntity rep)
+        {       
                 ArrayList row = new ArrayList();
 
                 row.Add(ent.repo_name);
                 row.Add(ent.owner);
+                row.Add(rep.branch);
                 row.Add(ent.path);
 
                 dataGridViewFinal.Rows.Add(row.ToArray());
@@ -51,8 +56,12 @@ namespace GitSame
         public void printFileEntityList(List<FileEntity> ent)
         {
             Console.WriteLine("FileEntityList");
+            RepoEntity rep;
             foreach (var i in ent)
-                printFileEntity(i);
+            {   
+                rep = db.getRepos(new RepoEntity { owner = i.owner, name = i.repo_name })[0];
+                printFileEntity(i, rep);
+            }
         }
 
         private void dataGridViewFinal_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -69,9 +78,12 @@ namespace GitSame
                     string url2 = '"' + "http://github.com/" + dataGridViewFinal[e.ColumnIndex, e.RowIndex].Value.ToString() + '/' + '"';
                     System.Diagnostics.Process.Start(url2);
                 }
-                else if (e.ColumnIndex == 2)
+                else if (e.ColumnIndex == 3)
                 {
-                    string url3 = '"' + "http://github.com/" + dataGridViewFinal[1, e.RowIndex].Value.ToString() + '/' + dataGridViewFinal[e.ColumnIndex, e.RowIndex].Value.ToString() + '/' + '"';
+                    string owner = dataGridViewFinal[1, e.RowIndex].Value.ToString();
+                    string repo_name = dataGridViewFinal[0, e.RowIndex].Value.ToString();
+                   string branch = dataGridViewFinal[2, e.RowIndex].Value.ToString();
+                    string url3 = '"' + "http://github.com/" + owner + '/' + repo_name + "/blob/" + branch + '/' + dataGridViewFinal[e.ColumnIndex, e.RowIndex].Value.ToString() + '"';
                     System.Diagnostics.Process.Start(url3);
                 }
 
