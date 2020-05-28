@@ -301,7 +301,7 @@ namespace GitSame
         public void getTree(RepoEntity i)
         {
             repo1 = "https://github.com/" + i.owner + '/' + i.name;
-            //Manager.setToken("47c1dfe330ee38e55f66a24010c06812ba622302");
+            //Manager.setToken("your token");
 
             api1 = Manager.toApiUrl(repo1);
             rep1 = Manager.doRequest<Repo>(api1);
